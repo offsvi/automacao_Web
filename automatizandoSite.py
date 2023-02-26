@@ -1,12 +1,13 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.keys import Keys
 
-servico = Service(ChromeDriverManager().install())
+chromedriver_path = "caminho/para/o/chromedriver"
 
+driver = webdriver.Chrome(executable_path=chromedriver_path)
 
-navegador = webdriver.Chrome(service=servico)
+driver.get("https://www.google.com")
 
-navegador.get("https://pages.hashtagtreinamentos.com/inscricao-minicurso-python-automacao-org?origemurl=hashtag_yt_org_minipython_8AMNaVt0z_M")
+search_box = driver.find_element_by_css_selector("input[name='q']")
+search_box.send_keys("Python automation" + Keys.RETURN)
 
-navegador.find_element('xpath', '')
+driver.quit()
